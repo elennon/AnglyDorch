@@ -1,0 +1,15 @@
+﻿<div id="container1">
+    <ul ng-repeat="Team in Teams" id="services-list" ng-click="go('Team')">
+        <li>
+            <div class="image">
+                <img ng-src="data:image/JPEG;base64,{{Team.teamImage}}" err-src="images/grp1.png" alt=" plop" />
+            </div>
+            <div class="content">
+                <h2>{{Team.teamName}}</h2>
+                <p>
+                    {{Team.location}}
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>
