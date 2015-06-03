@@ -17,16 +17,21 @@
             $scope.Teams = storage.getAll();
         }
 
-        $scope.go = function (route) {
-            $location.path(route);
+        $scope.go = function (route, param) {
+            $location.path(route + '/' + param );
         };
         refresh();
     }])
 
-    .controller('viewTeamController', ['$scope', '$routeParams',
-    function ($scope, $routeParams) {
+    //.controller("viewTeamController", function ($scope, $routeParams) {
+    //    $scope.message = $routeParams.Location;
+    //})
+
+    .controller('viewTeamController', ['$scope', 'storage', '$routeParams',
+    function ($scope, storage, $routeParams) {
         // create a message to display in our view
-        $scope.message = $routeParams.ID;
+        var id = $routeParams.param;
+        $scope.Team = storage.getItem(id);
     }]);
    
 })();

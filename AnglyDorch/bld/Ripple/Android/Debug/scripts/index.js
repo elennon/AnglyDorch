@@ -28,8 +28,8 @@
                 templateUrl: 'partials/teams.html',
                 controller: 'teamsController'
             }).
-            when('/Team', {
-                templateUrl: 'partials/page.html',
+            when('/team/:param', {
+                templateUrl: 'partials/viewTeam.html',
                 controller: 'viewTeamController'
             }).
             otherwise({

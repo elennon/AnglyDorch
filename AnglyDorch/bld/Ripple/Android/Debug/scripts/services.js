@@ -24,10 +24,23 @@
             };
         })
         .factory("localStorage", ['$q', "$window", "guidGenerator", function ($q, $window, guidGenerator) {
-            var localStorageKey = "toDoItems";
+            var localStorageKey = "teams";
 
             var loadFromStorage = function () {
+
                 return angular.fromJson($window.localStorage.getItem(localStorageKey)) || [];
+            };
+            //angular.fromJson
+            var singleFromStorage = function () {
+                var data = ($window.localStorage.getItem(localStorageKey)) || [];
+                if (!data) {
+                    data = {}
+                    return ""
+                }
+                else {
+                    data = JSON.parse(data)
+                    return data[item]
+                }                
             };
 
             var saveToStorage = function (items) {
@@ -37,6 +50,10 @@
             return {
                 getAll: function () {
                     return loadFromStorage();
+                },
+
+                getItem: function (item) {
+                    return singleFromStorage();                  
                 },
 
                 create: function (text, address) {
@@ -103,6 +120,11 @@
                     isArray: true,
                     headers: headers
                 },
+                'getById': {
+                    method: 'GET',
+                    params:{$id: '@id'},
+                    headers: headers
+                },
                 'delete': {
                     method: 'DELETE',
                     headers: headers
@@ -117,10 +139,14 @@
                 }
             });
 
-
             var azureStorage = {
                 getAll: function () {
                     return team.query();
+                },
+
+                getItem: function (id) {
+                    var ew = team.getById(id);
+                    return team.getById(id);
                 },
 
                 create: function (TeamName, Location) {

@@ -1,5 +1,5 @@
 ﻿<div id="container1">
-    <ul ng-repeat="Team in Teams" id="services-list" ng-click="go('Team')">
+    <ul ng-repeat="Team in Teams" id="services-list" ng-click="go('team', Team.id)">
         <li>
             <div class="image">
                 <img ng-src="data:image/JPEG;base64,{{Team.teamImage}}" err-src="images/grp1.png" alt=" plop" />
